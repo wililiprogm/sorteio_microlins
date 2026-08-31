@@ -116,6 +116,7 @@ def sortear():
     return redirect(url_for("admin"))
 
 
+init_db()  # garante que a tabela existe tanto rodando localmente quanto via gunicorn no Render
+
 if __name__ == "__main__":
-    init_db()
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
