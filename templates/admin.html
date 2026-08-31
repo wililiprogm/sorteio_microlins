@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block titulo %}Área do professor - Sorteio{% endblock %}
+{% block conteudo %}
+  <h1>Participantes inscritos</h1>
+  <p class="subtitulo">{{ participantes|length }} aluno(s) cadastrado(s)</p>
+
+  <table>
+    <tr><th>Nome</th><th>Telefone</th></tr>
+    {% for p in participantes %}
+      <tr><td>{{ p.nome }}</td><td>{{ p.telefone }}</td></tr>
+    {% else %}
+      <tr><td colspan="2">Nenhum participante ainda.</td></tr>
+    {% endfor %}
+  </table>
+
+  <form method="post" action="{{ url_for('sortear') }}" style="margin-top:20px;">
+    <button type="submit">🎧 Sortear vencedor</button>
+  </form>
+
+  <div class="rodape"><a href="{{ url_for('admin_logout') }}">Sair</a></div>
+{% endblock %}

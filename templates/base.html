@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Sorteio{% endblock %}</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #1f2937, #4338ca);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 420px;
+      border-radius: 16px;
+      padding: 32px 28px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+    h1 {
+      font-size: 1.3rem;
+      text-align: center;
+      color: #1f2937;
+      margin-bottom: 6px;
+    }
+    .subtitulo {
+      text-align: center;
+      color: #6b7280;
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+    }
+    input[type="text"], input[type="tel"], input[type="password"] {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 10px;
+      background: #4338ca;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:hover { background: #372ea8; }
+    .flash {
+      padding: 12px 14px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      font-size: 0.9rem;
+    }
+    .flash.sucesso { background: #dcfce7; color: #166534; }
+    .flash.erro { background: #fee2e2; color: #991b1b; }
+    .flash.vencedor { background: #fef9c3; color: #854d0e; font-weight: 700; text-align: center; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid #e5e7eb; font-size: 0.9rem; }
+    .rodape { text-align: center; margin-top: 16px; font-size: 0.8rem; }
+    .rodape a { color: #6b7280; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+      {% for categoria, msg in mensagens %}
+        <div class="flash {{ categoria }}">{{ msg }}</div>
+      {% endfor %}
+    {% endwith %}
+    {% block conteudo %}{% endblock %}
+  </div>
+</body>
+</html>
